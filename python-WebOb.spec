@@ -1,12 +1,12 @@
 %define 	module	WebOb
 Summary:	WSGI request and response object
 Name:		python-%{module}
-Version:	1.0
+Version:	1.0.3
 Release:	1
 License:	MIT
 Group:		Development/Languages/Python
 Source0:	http://pypi.python.org/packages/source/W/WebOb/%{module}-%{version}.tar.gz
-# Source0-md5:	2949c7b4cee48aa10ddc244eaff5d38b
+# Source0-md5:	808066a82e8ba4f0501cc6550f8878a7
 URL:		http://pythonpaste.org/webob/
 BuildRequires:	python-devel
 BuildRequires:	python-setuptools
@@ -49,5 +49,3 @@ rm -rf $RPM_BUILD_ROOT
 %endif
 %dir %{py_sitescriptdir}/webob
 %{py_sitescriptdir}/webob/*.py[co]
-%dir %{py_sitescriptdir}/webob/util
-%{py_sitescriptdir}/webob/util/*.py[co]
