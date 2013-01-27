@@ -1,18 +1,18 @@
 %define 	module	WebOb
 Summary:	WSGI request and response object
 Name:		python-%{module}
-Version:	1.0.3
+Version:	1.2.3
 Release:	1
 License:	MIT
 Group:		Development/Languages/Python
 Source0:	http://pypi.python.org/packages/source/W/WebOb/%{module}-%{version}.tar.gz
-# Source0-md5:	808066a82e8ba4f0501cc6550f8878a7
-URL:		http://pythonpaste.org/webob/
+# Source0-md5:	11825b7074ba7043e157805e4e6e0f55
+URL:		http://webob.org/
 BuildRequires:	python-devel
 BuildRequires:	python-setuptools
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.219
-%pyrequires_eq	python-modules
+Requires:	python-modules
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -32,8 +32,8 @@ environment.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 %{__python} setup.py install \
+	--skip-build \
 	--optimize=2 \
 	--root=$RPM_BUILD_ROOT
 
@@ -44,8 +44,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
+%dir %{py_sitescriptdir}/webob
+%{py_sitescriptdir}/webob/*.py[co]
 %if "%{py_ver}" > "2.4"
 %{py_sitescriptdir}/WebOb-*.egg-info
 %endif
-%dir %{py_sitescriptdir}/webob
-%{py_sitescriptdir}/webob/*.py[co]
