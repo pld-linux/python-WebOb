@@ -1,8 +1,12 @@
+#
+# Conditional build:
+%bcond_without	python3	# CPython 3.x module
+
 %define 	module	WebOb
 Summary:	WSGI request and response object
 Name:		python-%{module}
 Version:	1.2.3
-Release:	1
+Release:	2
 License:	MIT
 Group:		Development/Languages/Python
 Source0:	http://pypi.python.org/packages/source/W/WebOb/%{module}-%{version}.tar.gz
@@ -24,11 +28,35 @@ The objects map much of the specified behavior of HTTP, including
 header parsing and accessors for other standard parts of the
 environment.
 
+%package -n python3-%{module}
+Summary:	Add options to doctest examples while they are running
+Group:		Libraries/Python
+
+%description -n python3-%{module}
+WebOb provides wrappers around the WSGI request environment, and an
+object to help create WSGI responses.
+
+The objects map much of the specified behavior of HTTP, including
+header parsing and accessors for other standard parts of the
+environment.
+
 %prep
 %setup -q -n %{module}-%{version}
 
+%if %{with python3}
+rm -rf build-3
+set -- *
+install -d build-3
+cp -a "$@" build-3
+%endif
+
 %build
 %{__python} setup.py build
+
+%if %{with python3}
+cd build-3
+%{__python3} setup.py build
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -39,6 +67,14 @@ rm -rf $RPM_BUILD_ROOT
 
 %py_postclean
 
+%if %{with python3}
+cd build-3
+%{__python3} setup.py install \
+	--skip-build \
+	--optimize=2 \
+	--root=$RPM_BUILD_ROOT
+%endif
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -47,5 +83,14 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{py_sitescriptdir}/webob
 %{py_sitescriptdir}/webob/*.py[co]
 %if "%{py_ver}" > "2.4"
-%{py_sitescriptdir}/WebOb-*.egg-info
+%{py_sitescriptdir}/WebOb-%{version}-py*.egg-info
+%endif
+
+%if %{with python3}
+%files -n python3-%{module}
+%defattr(644,root,root,755)
+%dir %{py3_sitescriptdir}/webob
+%{py3_sitescriptdir}/webob/*.py
+%{py3_sitescriptdir}/webob/__pycache__
+%{py3_sitescriptdir}/WebOb-%{version}-py*.egg-info
 %endif
