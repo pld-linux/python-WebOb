@@ -6,7 +6,7 @@
 Summary:	WSGI request and response object
 Name:		python-%{module}
 Version:	1.2.3
-Release:	5
+Release:	6
 License:	MIT
 Group:		Development/Languages/Python
 Source0:	http://pypi.python.org/packages/source/W/WebOb/%{module}-%{version}.tar.gz
