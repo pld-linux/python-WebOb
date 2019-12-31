@@ -9,13 +9,13 @@
 Summary:	WSGI request and response object
 Summary(pl.UTF-8):	Obiekty żądań i odpowiedzi WSGI
 Name:		python-%{module}
-Version:	1.8.2
-Release:	2
+Version:	1.8.5
+Release:	1
 License:	MIT
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/WebOb/
 Source0:	https://files.pythonhosted.org/packages/source/W/WebOb/%{module}-%{version}.tar.gz
-# Source0-md5:	d04756e6683fedddba52eafbe9adf404
+# Source0-md5:	1761f416e8cf53f6fb674149cc223bd1
 URL:		https://webob.org/
 %if %{with python2}
 BuildRequires:	python-devel >= 1:2.7
@@ -34,7 +34,8 @@ BuildRequires:	python3-pytest >= 3.1.0
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
 %if %{with doc}
-BuildRequires:	sphinx-pdg >= 1.3.1
+BuildRequires:	python3-pylons-sphinx-themes
+BuildRequires:	sphinx-pdg-3 >= 1.7.5
 %endif
 Requires:	python-modules >= 1:2.7
 BuildArch:	noarch
@@ -112,7 +113,8 @@ PYTHONPATH=$(pwd)/src \
 
 %if %{with doc}
 PYTHONPATH=$(pwd)/src \
-%{__make} -C docs html
+%{__make} -C docs html \
+	SPHINXBUILD=sphinx-build-3
 %endif
 
 %install
