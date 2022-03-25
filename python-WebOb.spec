@@ -10,7 +10,7 @@ Summary:	WSGI request and response object
 Summary(pl.UTF-8):	Obiekty żądań i odpowiedzi WSGI
 Name:		python-%{module}
 Version:	1.8.5
-Release:	3
+Release:	4
 License:	MIT
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/WebOb/
