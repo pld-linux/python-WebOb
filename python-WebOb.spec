@@ -9,13 +9,13 @@
 Summary:	WSGI request and response object
 Summary(pl.UTF-8):	Obiekty żądań i odpowiedzi WSGI
 Name:		python-%{module}
-Version:	1.8.7
-Release:	3
+Version:	1.8.9
+Release:	1
 License:	MIT
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/WebOb/
-Source0:	https://files.pythonhosted.org/packages/source/W/WebOb/%{module}-%{version}.tar.gz
-# Source0-md5:	10191c69fa5a2c00f3b9abfb8937b415
+Source0:	https://files.pythonhosted.org/packages/source/W/WebOb/webob-%{version}.tar.gz
+# Source0-md5:	4167b16880e0d4c22aadee8ec3cc6c26
 URL:		https://webob.org/
 %if %{with python2}
 BuildRequires:	python-devel >= 1:2.7
@@ -90,7 +90,7 @@ API documentation for Python WebOb module.
 Dokumentacja API modułu Pythona WebOb.
 
 %prep
-%setup -q -n %{module}-%{version}
+%setup -q -n webob-%{version}
 
 %build
 %if %{with python2}
