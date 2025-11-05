@@ -29,6 +29,9 @@ BuildRequires:	python3-devel >= 1:3.4
 BuildRequires:	python3-setuptools
 %if %{with tests}
 BuildRequires:	python3-pytest >= 3.1.0
+%if "%{_ver_ge %{py3_ver} 3.13}" == "1"
+BuildRequires:	python3-legacy-cgi
+%endif
 %endif
 %endif
 BuildRequires:	rpm-pythonprov
